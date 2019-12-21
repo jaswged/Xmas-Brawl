@@ -3,29 +3,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private float speed = 4f;
-    [SerializeField] private float run_speed = 7f;
     [SerializeField] private Animator animator;
     
     private Rigidbody2D _rigidBody;
     private bool _facingRight = true;  // For determining which way the player is currently facing.
-    private bool _isRunning;
     private bool _isAlreadyAttacking;
 
     private void Start() {
-        _rigidBody = GetComponent<Rigidbody2D>();
+        //_rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update() {
         #region Movement
-        _isRunning = Input.GetButton("Run");
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
-
-        var runSpeed = _isRunning ? run_speed: speed;
-        var horizontalChange = runSpeed * horizontalInput * Time.deltaTime;
-        var verticalChange =   runSpeed * verticalInput * Time.deltaTime;
         
-        Vector2 position = _rigidBody.position;
+        var horizontalChange = speed * horizontalInput * Time.deltaTime;
+        var verticalChange =   speed * verticalInput * Time.deltaTime;
+        
+        Vector2 position = transform.position;
         position.x += horizontalChange;
         position.y += verticalChange;
 
@@ -40,14 +37,7 @@ public class PlayerController : MonoBehaviour {
 
         var movingSpeed = Mathf.Abs(horizontalChange + verticalChange);
         animator.SetFloat(Constants.SPEED, movingSpeed);
-
-        if (_isRunning && movingSpeed > 0) {
-            animator.SetBool(Constants.IS_RUNNING, true);
-        }
-        else {
-            animator.SetBool(Constants.IS_RUNNING, false);
-        }
-
+        
         _rigidBody.MovePosition(position);
         #endregion
 
@@ -76,7 +66,6 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(.5f);
         
         //Debug.DrawLine(transform.position, Vector2.left, Color.green); 
-        #warning TODO Need to attack to the left as well.
         var hits = Physics2D.RaycastAll(transform.position, _facingRight ? Vector2.right: Vector2.left, 1.5f);
         foreach (var v in hits) {
             //TODO use layer mask instead

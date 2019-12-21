@@ -149,7 +149,7 @@
                 {
                     "name": "",
                     "id": "a22b351f-8ab0-4e14-ab08-a5eaf13d2ba5",
-                    "path": "<Mouse>/clickCount",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

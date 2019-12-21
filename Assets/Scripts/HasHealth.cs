@@ -12,6 +12,7 @@ public class HasHealth : MonoBehaviour {
     Animator _anim;
     private float timeToDie = 7f;
     [SerializeField] private bool isPlayer = false;
+    
 
     private void OnEnable() {
         _anim = GetComponentInChildren<Animator>();
@@ -20,6 +21,7 @@ public class HasHealth : MonoBehaviour {
     }
 
     public void ChangeHealth(float amount) {
+        Debug.Log($"Take damage amount {amount}");
         if (!isAlive) return;
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
         
@@ -32,6 +34,7 @@ public class HasHealth : MonoBehaviour {
     }
 
     private void Die() {
+        Debug.Log($"{name} is dying!");
         isAlive = false;
         AudioSource.PlayClipAtPoint(deathClip[Random.Range(0, deathClip.Length)], gameObject.transform.position, 1f);
         Debug.Log($"killing {transform.name}");
@@ -41,12 +44,12 @@ public class HasHealth : MonoBehaviour {
         }
         else {
             // TODO Make a dead trigger for front and back separate
-            _anim.SetTrigger(Constants.IS_DEAD_BACK);
+            _anim.SetTrigger(Constants.DIE);
             
             IEnumerator coroutine = KillEnemy();
             StartCoroutine(coroutine);
 
-            GameManagement.Instance.IncreaseKills();
+            //GameManagement.Instance.IncreaseKills();
         }
     }
     

@@ -9,7 +9,13 @@ public class MainMenu : MonoBehaviour {
     private void Awake() {
         _renderer = GetComponent<Renderer>();
     }
-    public void BeginButton() {
+    public void Begin1PlayerButton() {
+        GameManagement.Instance.Set2PlayerGame(false);
+        SceneManager.LoadScene(1);
+    }
+    
+    public void Begin2PlayerButton() {
+        GameManagement.Instance.Set2PlayerGame(true);
         SceneManager.LoadScene(1);
     }
 

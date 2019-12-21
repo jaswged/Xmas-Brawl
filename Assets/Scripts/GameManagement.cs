@@ -2,23 +2,50 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManagement : MonoBehaviour {
     public static GameManagement Instance;
-    private string SAVE_FILE_NAME;
+    private string SAVE_FILE_NAME = "Xmas";
+    [SerializeField] private List<GameObject> Fighters;
     public int CurrentLevel { get; set;}
     private float score = 0f;
     private float totalScore = 0f;
     private int kills = 0;
     public string playerName = "";
+    
+    [SerializeField] private bool is2Player;
+    private GameObject player1Char;
+    private GameObject player2Char;
 
     private void Awake() {
         if (Instance == null) {
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
             Instance = this;
         }else if(Instance != this){
             Destroy(gameObject);
         }
+    }
+
+    public void BeginGame(int player1CharInd, int player2CharInd) {
+        //TODO Set Player chars from Unity List
+        player1Char = Fighters[player1CharInd];
+        player2Char = Fighters[player2CharInd];
+        SceneManager.LoadScene(is2Player ? 2 : 2);
+    }
+
+    public void SpawnFighters() {
+        if (player1Char == null) player1Char = Fighters[Random.Range(0, 3)].gameObject;
+        if (player2Char == null) player2Char = Fighters[Random.Range(0, 3)].gameObject;
+        
+        Instantiate(player1Char);
+        Instantiate(player2Char);
+    }
+
+    public void Set2PlayerGame(bool pIs2Player) {
+        this.is2Player = pIs2Player;
     }
 
     // Get and increase game Score
