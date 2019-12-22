@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FightRoundKeeper : MonoBehaviour {
     private int player1Wins;
@@ -26,6 +27,7 @@ public class FightRoundKeeper : MonoBehaviour {
 
         var player2Char = Instantiate(GameManagement.Instance.GetPlayer2Char(), Player2SpawnPoint);
         player2Char.GetComponent<FightController>().enabled = false;
+        player2Char.GetComponent<PlayerInput>().enabled = false;
         player2Char.tag = "Enemy";
     }
 }
