@@ -36,16 +36,17 @@ public class GameManagement : MonoBehaviour {
         SceneManager.LoadScene(is2Player ? 2 : 2);
     }
 
-    public void SpawnFighters() {
-        if (player1Char == null) player1Char = Fighters[Random.Range(0, 3)].gameObject;
-        if (player2Char == null) player2Char = Fighters[Random.Range(0, 3)].gameObject;
-        
-        Instantiate(player1Char);
-        Instantiate(player2Char);
-    }
-
     public void Set2PlayerGame(bool pIs2Player) {
         this.is2Player = pIs2Player;
+    }
+
+    public GameObject GetPlayer1Char() {
+        if (player1Char == null) player1Char = Fighters[Random.Range(0, 2)].gameObject;
+        return player1Char;
+    }
+    public GameObject GetPlayer2Char() {
+        if (player2Char == null) player2Char = Fighters[Random.Range(0, 2)].gameObject;
+        return player2Char;
     }
 
     // Get and increase game Score

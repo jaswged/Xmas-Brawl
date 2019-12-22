@@ -45,7 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fighters:
   - {fileID: 319630323121237584, guid: 87095d95e79a37d47b49d66835ad3fe1, type: 3}
-  - {fileID: 3054743938727518375, guid: a2c0c53e935bc0041a56101720d1bc3f, type: 3}
   - {fileID: 2586593156604395673, guid: fcff71e983433bb43ba368edf8c0e35f, type: 3}
   playerName: 
   is2Player: 0

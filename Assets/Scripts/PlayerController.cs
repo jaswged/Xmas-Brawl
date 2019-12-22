@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     private bool _isAlreadyAttacking;
 
     private void Start() {
-        //_rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 

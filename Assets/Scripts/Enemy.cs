@@ -5,10 +5,9 @@ public class Enemy : MonoBehaviour {
     private Transform _player;
     private HasHealth _health;
     private Animator _animator;
-    private const float MOVING_SPEED = 1.5f;
+    private const float MOVING_SPEED = 1f;
     private const float MIN_DIST = 1.7f;
     private bool _facingRight = true;  // For determining which way the enemy is currently facing.
-    private static readonly int IS_ATTACKING_TRIGGER = Animator.StringToHash("IsAttackingTrigger");
     private float _previousHorizontal;
     private bool _isAlreadyAttacking;
 
@@ -36,7 +35,7 @@ public class Enemy : MonoBehaviour {
             //Vector2 position = new Vector2(pos.x - movingSpeed * Time.deltaTime, pos.y);
             Vector2 position = new Vector2(Mathf.Lerp(pos.x, playerPos.x, Time.deltaTime), 
                 Mathf.Lerp(pos.y, playerPos.y, Time.deltaTime));
-            _animator.SetFloat(Constants.SPEED, MOVING_SPEED);
+            _animator.SetFloat("speed", MOVING_SPEED);
             transform.position = position;
 
             var horizontalChange = _previousHorizontal - transform.position.x;
@@ -50,7 +49,6 @@ public class Enemy : MonoBehaviour {
                 Flip();
             }
         }
-        
     }
     
     private void Flip() {
@@ -65,18 +63,18 @@ public class Enemy : MonoBehaviour {
     }
     
     private IEnumerator Attack() {
-        _animator.SetTrigger(IS_ATTACKING_TRIGGER);
+        _animator.SetTrigger("isPunching");
         yield return new WaitForSeconds(.75f);
-        if (_health.isAlive) {
-            var hits = Physics2D.RaycastAll(transform.position, _facingRight ? Vector2.left : Vector2.right, MIN_DIST);
-            foreach (var v in hits) {
-                //TODO use layer mask instead https://stackoverflow.com/questions/24563085/raycast-but-ignore-yourself
-                if (v.transform.CompareTag(Tags.ENEMY)) continue;
-                var playerHealth = v.transform.GetComponentInParent<HasHealth>();
-                playerHealth.ChangeHealth(-15);
-            }
-
-            _isAlreadyAttacking = false;
+        if (!_health.isAlive) yield break;
+        
+        var hits = Physics2D.RaycastAll(transform.position, _facingRight ? Vector2.left : Vector2.right, MIN_DIST);
+        foreach (var v in hits) {
+            //TODO use layer mask instead https://stackoverflow.com/questions/24563085/raycast-but-ignore-yourself
+            if (v.transform.CompareTag(Tags.ENEMY)) continue;
+            var playerHealth = v.transform.GetComponentInParent<HasHealth>();
+            playerHealth.ChangeHealth(-15);
         }
+
+        _isAlreadyAttacking = false;
     }
 }

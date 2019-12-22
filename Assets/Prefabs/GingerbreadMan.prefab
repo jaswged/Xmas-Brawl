@@ -124,6 +124,18 @@ MonoBehaviour:
   m_DefaultActionMap: Fight
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4316977116984050820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319630323121237584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44cb39950e3aa5438c07cddcf31902b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6644549936382555061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c021df3b10c4d4d97b450c9eb3d426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
+  maxHealth: 100
   deathClip:
   - {fileID: 8300000, guid: 9e195a2e59a8c1a409041f86bef77053, type: 3}
   - {fileID: 8300000, guid: be1b7ac10cc99d043a67ca8a99a3e7b8, type: 3}
@@ -227,12 +239,12 @@ PrefabInstance:
     - target: {fileID: -5145823845697197491, guid: c7775476943fc4732aba3623ee751f54,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.61
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5145823845697197491, guid: c7775476943fc4732aba3623ee751f54,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5145823845697197491, guid: c7775476943fc4732aba3623ee751f54,
         type: 3}

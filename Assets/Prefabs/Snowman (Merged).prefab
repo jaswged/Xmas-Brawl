@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 4029381498928257687}
   - component: {fileID: 7179350686202225381}
   - component: {fileID: 774132975855139413}
+  - component: {fileID: 7372076262592809880}
   m_Layer: 8
   m_Name: Snowman (Merged)
   m_TagString: Player
@@ -223,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2586593156604395673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.19, y: -7.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 8337542910108648672}
@@ -317,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c021df3b10c4d4d97b450c9eb3d426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
+  maxHealth: 100
   deathClip:
   - {fileID: 8300000, guid: 9e195a2e59a8c1a409041f86bef77053, type: 3}
   - {fileID: 8300000, guid: be1b7ac10cc99d043a67ca8a99a3e7b8, type: 3}
@@ -376,6 +377,18 @@ MonoBehaviour:
   jumpHeight: 2
   attackPos: {fileID: 6293998052792972308}
   attackRange: 2
+--- !u!114 &7372076262592809880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2586593156604395673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44cb39950e3aa5438c07cddcf31902b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3552878054475041209
 GameObject:
   m_ObjectHideFlags: 0

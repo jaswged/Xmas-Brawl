@@ -90,7 +90,6 @@ public class FightController : MonoBehaviour {
 
         yield return new WaitForSeconds(.5f);
         
-        Debug.DrawLine(transform.position, _facingRight ? Vector2.right: Vector2.left, Color.green);
         LayerMask mask = LayerMask.GetMask("Players");
         
        // From https://www.youtube.com/watch?v=1QfxdUpVh5I
@@ -103,10 +102,6 @@ public class FightController : MonoBehaviour {
        }
        
         _isAlreadyAttacking = false;
-    }
-
-    private void OnDrawGizmos() {
-        
     }
 
     private void OnDrawGizmosSelected() {
